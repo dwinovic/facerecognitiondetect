@@ -49,6 +49,7 @@ class App extends Component {
   }
 
   displayFaceBox = (box) => {
+    console.log(box);
     this.setState({box: box});
   }
 
@@ -64,12 +65,10 @@ class App extends Component {
       })
       .then((faceDetectModel) => {
         return faceDetectModel.predict(
-          this.state.input
-        );
+          this.state.input);
       })
-      .then((response) => {
-        console.log(response);
-      });
+      .then(response => this.displayFaceBox(this.calculateFaceLocation(response)));
+      // .catch(err => console.log(err);)
   }
 
   
